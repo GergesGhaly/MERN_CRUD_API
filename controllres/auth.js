@@ -30,9 +30,11 @@ export const handelLogin = async (req, res) => {
   const token = jwt.sign(name, process.env.JWT_KEY);
 
   res.cookie("auth-token", token).json({
+    userId: user._id,
     userName: user.name,
     userToken: token,
   });
+  console.log("ID", user._id);
 };
 
 export const handelregister = async (req, res) => {
@@ -58,6 +60,7 @@ export const handelregister = async (req, res) => {
   await user.save();
   const token = jwt.sign(name, process.env.JWT_KEY);
   res.cookie("auth-token", token).json({
+    userId: user._id,
     userName: user.name,
     userToken: token,
   });

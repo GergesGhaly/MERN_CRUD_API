@@ -23,22 +23,22 @@ export const updateuser = async (req, res) => {
 
 export const deleteuser = async (req, res) => {
   const id = req.params.id;
-  const checkOwneruser = await authUser.findOne({ _id: req.body.userId });
-  const checkuser = await usermodel.findOne({ _id: id });
+  // const checkOwneruser = await authUser.findOne({ _id: req.body.userId });
+  // const checkuser = await usermodel.findOne({ _id: id });
 
-  if (!checkOwneruser) {
-    res.status(401).json("Login in First !");
-    return;
-  }
-  console.log(checkOwneruser._id);
-  console.log(checkuser.userAuthId);
+  // if (!checkOwneruser) {
+  //   res.status(401).json("Login in First !");
+  //   return;
+  // }
+  // console.log(checkOwneruser._id);
+  // console.log(checkuser.userAuthId);
 
-  if (checkOwneruser._id != checkuser.userAuthId) {
-    res
-      .status(401)
-      .json("you can delete and modify only the items that you have created");
-    return;
-  }
+  // if (checkOwneruser._id != checkuser.userAuthId) {
+  //   res
+  //     .status(401)
+  //     .json("you can delete and modify only the items that you have created");
+  //   return;
+  // }
 
   await usermodel.deleteOne({ _id: id });
   res.status(204).send("user deleted");
